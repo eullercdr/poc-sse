@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SSE Example</title>
+</head>
+<body>
+  <h1>SSE Mensagens em tempo Real</h1>
+  Veja os avatares do momento:<br/>
+  <img src="https://avatars0.githubusercontent.com/u/1?v=4" id="avatars" alt="avatar" />
+  <script>
+    const messagesDiv = document.querySelector('#messages');
+    const source = new EventSource('http://localhost:3000/sse');
+    source.onmessage = function (event) {
+      console.log(event);
+      const avatar = document.getElementById('avatars');
+      avatar.src = event.data;
+    };
+    //source.addEventListener('message', function (event) {
+      //const message = document.getElementById('messages');
+      //message.innerHTML = event.data;
+      //console.log(event.data);
+    //});
+  </script>
+</body>
+</html>
